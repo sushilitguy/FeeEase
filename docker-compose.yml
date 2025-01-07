@@ -1,0 +1,26 @@
+services:
+  mysql:
+    image: mysql:9.1
+    container_name: fee_ease_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: GooGle@123
+      MYSQL_DATABASE: fee_ease
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+
+  springboot-app:
+    build: .
+    #image: fee_ease_springboot_restapi_image
+    container_name: fee_ease_rest_api_app_container
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql/fee_ease
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: GooGle@123
+    ports:
+      - "8081:8080"
+    depends_on:
+      - mysql
+volumes:
+  mysql_data:
