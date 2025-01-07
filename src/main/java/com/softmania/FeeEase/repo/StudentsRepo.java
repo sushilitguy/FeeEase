@@ -14,4 +14,8 @@ public interface StudentsRepo extends JpaRepository<Students, Integer> {
             "(SELECT f.student.id FROM Fees f " +
             "WHERE f.depositMonthYear = :depositMonthYear) AND s.school.id = :schoolId")
     public List<Students> getFeesNotPaidByStudentByMonthYear(int schoolId, String depositMonthYear);
+
+    Students findBySession(String session);
+
+    Students findBySessionAndSchoolClass(String session, String schoolClass);
 }

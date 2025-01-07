@@ -20,6 +20,14 @@ public class StudentsService {
         return repo.findById(id).orElse(null);
     }
 
+    public Students getStudentsBySession(String session) {
+        return repo.findBySession(session);
+    }
+
+    public Students getStudentsBySessionAndClass(String session, String schoolClass) {
+        return repo.findBySessionAndSchoolClass(session, schoolClass);
+    }
+
     public Students addStudent(Students student) {
         return repo.save(student);
     }
