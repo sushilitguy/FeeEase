@@ -20,11 +20,11 @@ public class StudentsService {
         return repo.findById(id).orElse(null);
     }
 
-    public Students getStudentsBySession(String session) {
+    public List<Students> getStudentsBySession(String session) {
         return repo.findBySession(session);
     }
 
-    public Students getStudentsBySessionAndClass(String session, String schoolClass) {
+    public List<Students> getStudentsBySessionAndClass(String session, String schoolClass) {
         return repo.findBySessionAndSchoolClass(session, schoolClass);
     }
 

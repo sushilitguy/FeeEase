@@ -26,6 +26,26 @@ public class StudentsController {
         }
     }
 
+    @GetMapping("/students/session/{session}")
+    public ResponseEntity<List<Students>> getStudentsBySession(@PathVariable String session) {
+        List<Students> students = service.getStudentsBySession(session);
+        if(students.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(students, HttpStatus.OK);
+        }
+    }
+
+    @GetMapping("/students/session/{session}/class/{schoolClass}")
+    public ResponseEntity<List<Students>> getStudentsBySessionAndClass(@PathVariable String session, @PathVariable String schoolClass) {
+        List<Students> students = service.getStudentsBySessionAndClass(session, schoolClass);
+        if(students.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(students, HttpStatus.OK);
+        }
+    }
+
     @GetMapping("/students/{id}")
     public ResponseEntity<Students> getStudentById(@PathVariable int id) {
         Students student = service.getStudentById(id);
